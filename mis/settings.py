@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'mis.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'HOST': 'localhost',
         'NAME': 'mis',
         'USER': 'root',
@@ -116,7 +116,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'static').replace('\\', '/')
 STATICFILES_DIRS = (
     ('css',os.path.join(STATIC_ROOT,'css')),
     ('js',os.path.join(STATIC_ROOT,'js')),
@@ -125,3 +125,12 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'upload')
 MEDIA_URL = '/upload/'
+
+# other configuration
+APP_HOME = os.getcwdu()
+LOG_DIR = os.path.join(APP_HOME,"tmp")
+LOG_LEVEL = 0
+
+
+
+
